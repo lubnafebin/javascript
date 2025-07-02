@@ -10,13 +10,17 @@
     <button onclick="playGame('Rock')">Rock</button>
     <button onclick="playGame('Paper')">Paper</button>
     <button onclick="playGame('Scissor')">Scissor</button>
+    <p class="js-result"></p>
+    <p class="js-moves"></p>
+    <p class="js-score"></p>
     <button
       onclick="
+    alert('Score has been reset.');
     score.win = 0;
     score.lose = 0;
     score.tie = 0;
     localStorage.removeItem('score');
-    alert('Score has been reset.');
+    updateScoreElement();
     "
     >
       Reset Score
@@ -27,6 +31,8 @@
         lose: 0,
         tie: 0,
       };
+
+      updateScoreElement();
 
       function pickComputerMove() {
         randomNumber = Math.random();
@@ -80,9 +86,17 @@
 
         localStorage.setItem("score", JSON.stringify(score));
 
-        alert(
-          `You chose ${playerMove}. Computer chose ${computerMove}. ${result}\nWins: ${score.win}, Loses: ${score.lose}, Ties: ${score.tie}`
-        );
+        updateScoreElement();
+
+        document.querySelector(".js-result").innerHTML = result;
+        document.querySelector(
+          ".js-moves"
+        ).innerHTML = `You chose ${playerMove}. Computer chose ${computerMove}.`;
+      }
+      function updateScoreElement() {
+        document.querySelector(
+          ".js-score"
+        ).innerHTML = `Wins: ${score.win}, Loses: ${score.lose}, Ties: ${score.tie}`;
       }
     </script>
   </body>
