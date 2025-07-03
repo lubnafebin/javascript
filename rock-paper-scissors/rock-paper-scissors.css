@@ -33,10 +33,12 @@ margin-top: 50px;
 margin-top: 50px;
 }
 
-.reset-button {
+.reset-button ,
+.auto-play-button{
 font-size: 15px;
 border: none;
 padding: 8px 10px;
 cursor: pointer;
 border-radius: 25px;
 }
+
