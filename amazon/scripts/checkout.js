@@ -1,5 +1,12 @@
 import { cart, removeFromCart } from "../data/cart.js";
 import { products } from "../data/product.js";
+import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
+import { deliveryOptions } from "../scripts/deliveryOptions.js";
+
+const today = dayjs();
+const deliveryDate = today.add(7, "days");
+deliveryDate.format("dddd, MMMM D");
+console.log(deliveryDate);
 
 let cartSummaryHTML = "";
 
@@ -13,9 +20,23 @@ cart.forEach((item) => {
       matchingProduct = product;
     }
   });
+
+  const deliveryOptionId = item.deliveryOptionId;
+
+  let matchingDeliveryOption;
+  deliveryOptions.forEach((option) => {
+    if (option.id === deliveryOptionId) {
+      matchingDeliveryOption = option;
+    }
+  });
+
+  const today = dayjs();
+  const deliveryDate = today.add(matchingDeliveryOption.deliveryDays, "days");
+  const formattedDate = deliveryDate.format("dddd, MMMM D");
+
   cartSummaryHTML += `<div class="cart-item-container 
   js-cart-item-container-${matchingProduct.id}">
-            <div class="delivery-date">Delivery date: Tuesday, June 21</div>
+            <div class="delivery-date">Delivery date: ${formattedDate}</div>
 
             <div class="cart-item-details-grid">
               <img
@@ -49,44 +70,40 @@ cart.forEach((item) => {
                 <div class="delivery-options-title">
                   Choose a delivery option:
                 </div>
-                <div class="delivery-option">
-                  <input
-                    type="radio"
-                    checked
-                    class="delivery-option-input"
-                    name="delivery-option-${matchingProduct.id}"
-                  />
-                  <div>
-                    <div class="delivery-option-date">Tuesday, June 21</div>
-                    <div class="delivery-option-price">FREE Shipping</div>
-                  </div>
-                </div>
-                <div class="delivery-option">
-                  <input
-                    type="radio"
-                    class="delivery-option-input"
-                    name="delivery-option-${matchingProduct.id}"
-                  />
-                  <div>
-                    <div class="delivery-option-date">Wednesday, June 15</div>
-                    <div class="delivery-option-price">$4.99 - Shipping</div>
-                  </div>
-                </div>
-                <div class="delivery-option">
-                  <input
-                    type="radio"
-                    class="delivery-option-input"
-                    name="delivery-option-${matchingProduct.id}"
-                  />
-                  <div>
-                    <div class="delivery-option-date">Monday, June 13</div>
-                    <div class="delivery-option-price">$9.99 - Shipping</div>
-                  </div>
-                </div>
+                ${deliveryOptionsHTML(matchingProduct, item)}
               </div>
             </div>
           </div>`;
 });
+
+function deliveryOptionsHTML(matchingProduct, item) {
+  let html = "";
+  deliveryOptions.forEach((option) => {
+    const today = dayjs();
+    const deliveryDate = today.add(option.deliveryDays, "days");
+    const formattedDate = deliveryDate.format("dddd, MMMM D");
+    const priceString =
+      option.priceCents === 0
+        ? "FREE"
+        : `$${(option.priceCents / 100).toFixed(2)} -`;
+
+    const isChecked = option.id === item.deliveryOptionId;
+
+    html += `<div class="delivery-option">
+                  <input
+                    type="radio"
+                    ${isChecked ? "checked" : ""}
+                    class="delivery-option-input"
+                    name="delivery-option-${matchingProduct.id}"
+                  />
+                  <div>
+                    <div class="delivery-option-date">${formattedDate}</div>
+                    <div class="delivery-option-price">${priceString} Shipping</div>
+                  </div>
+                </div>`;
+  });
+  return html;
+}
 
 document.querySelector(".js-order-summary").innerHTML = cartSummaryHTML;
 
