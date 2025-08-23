@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Form</title>
+  </head>
+  <body>
+    <h2>Fill the Form</h2>
+    <form>
+      <label for="name">Name:</label><br /><br />
+      <input
+        type="text"
+        placeholder=" Your Name"
+        required
+        title="Please enter your name"
+      /><br /><br />
+      <label for="email">Email:</label><br /><br />
+      <input
+        type="email"
+        placeholder="Your Email"
+        required
+        title="Please enter valid email"
+      /><br /><br />
+      <label for="phone">Phone Number:</label><br /><br />
+      <input
+        type="text"
+        placeholder="Your Phone  Number"
+        maxlength="10"
+        pattern="[0-9]{10}"
+        title="Enter 10 digit Phone Number"
+        required
+      /><br /><br />
+      <label for="message">Message:</label><br /><br />
+      <textarea
+        placeholder="Type message here..."
+        required
+        title="Please enter your message"
+      ></textarea
+      ><br /><br />
+      <button type="submit">Send</button>
+    </form>
+  </body>
+</html>
