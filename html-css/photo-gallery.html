@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photo Gallery</title>
+  </head>
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    .item {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    img {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    @media screen and (max-width: 600px) {
+      .gallery {
+        grid-template-columns: repeat(2, 150px);
+      }
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="gallery-items">
+        <h2>Photo Gallery</h2>
+        <div class="gallery">
+          <div class="item">
+            <img
+              src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80"
+              alt="random"
+            />
+            <p>A Road between mountains</p>
+          </div>
+          <div class="item">
+            <img
+              src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80"
+              alt="random"
+            />
+            <p>Boating</p>
+          </div>
+          <div class="item">
+            <img
+              src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=800&q=80"
+              alt="random"
+            />
+            <p>Camping</p>
+          </div>
+          <div class="item">
+            <img
+              src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+              alt="random"
+            />
+            <p>A Beautiful Sea</p>
+          </div>
+          <div class="item">
+            <img
+              src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=800&q=80"
+              alt="random"
+            />
+            <p>Reading</p>
+          </div>
+          <div class="item">
+            <img
+              src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+              alt="random"
+            />
+            <p>Sea</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
