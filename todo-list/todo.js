@@ -1,27 +1,7 @@
-let input = document.querySelector("input");
-let todos = [];
-let localStorageData = localStorage.getItem("todo array");
-if (localStorageData != null) {
-  let ogData = JSON.parse(localStorageData);
-  todos = ogData;
-  makeTodo();
-}
+let todos = JSON.parse(localStorage.getItem("todo-array")) || [];
+let editId = null;
 
-function addTodo() {
-  let inputElement = input.value;
-  input.value = "";
-  if (inputElement.trim() === "") {
-    alert("No Value Entered");
-  }
-  let todoObj = {
-    id: Date.now(),
-    text: inputElement,
-    completed: false,
-  };
-  todos.push(todoObj);
-  localStorage.setItem("todo array", JSON.stringify(todos));
-  makeTodo();
-}
+makeTodo();
 
 function makeTodo() {
   let todoList = "";
@@ -38,7 +18,7 @@ function makeTodo() {
               }">${text}</p>
             </div>
             <div class="icons">
-              <button onclick="editTodo(${id})" class="js-edit icon-button">
+              <button onclick="startEdit(${id})" class="js-edit icon-button">
                 <img src="images/edit.png" alt="edit" />
               </button>
               <button onclick="deleteTodo(${id})" class="js-delete icon-button">
@@ -53,6 +33,41 @@ function makeTodo() {
   document.getElementById("todo-list").innerHTML = todoList;
 }
 
+//add or update
+function addOrUpdateTodo() {
+  const inputElement = document.getElementById("todo-input");
+  const text = inputElement.value.trim();
+
+  if (text === "") return;
+
+  if (editId) {
+    todos = todos.map((todo) =>
+      todo.id === editId ? { ...todo, text } : todo
+    );
+    editId = null;
+    document.getElementById("add-btn").innerText = "Add";
+  } else {
+    const todoObj = {
+      id: Date.now(),
+      text,
+      completed: false,
+    };
+    todos.push(todoObj);
+  }
+  localStorage.setItem("todo array", JSON.stringify(todos));
+  makeTodo();
+  inputElement.value = "";
+}
+
+//mark Todo complete
+function toggleComplete(id) {
+  todos = todos.map((todo) =>
+    todo.id === id ? { ...todo, completed: !todo.completed } : todo
+  );
+  localStorage.setItem("todo array", JSON.stringify(todos));
+  makeTodo();
+}
+
 //delete Todo
 function deleteTodo(deleteId) {
   todos = todos.filter((todo) => todo.id !== deleteId);
@@ -61,20 +76,10 @@ function deleteTodo(deleteId) {
 }
 
 //edit Todo
-function editTodo(editId) {
-  let todoEdit = todos.find((todo) => todo.id === editId);
-  let newTodo = prompt("Enter the text", todoEdit.text);
-  if (newTodo && newTodo.trim() !== "") {
-    todoEdit.text = newTodo;
-    localStorage.setItem("todo array", JSON.stringify(todos));
-    makeTodo();
-  }
+function startEdit(id) {
+  const todo = todos.find((t) => t.id === id);
+  document.getElementById("todo-input").value = todo.text;
+  editId = id;
+  document.getElementById("add-btn").innerText = "Save";
 }
 
-//complete Todo
-function toggleComplete(id) {
-  let todo = todos.find((t) => t.id === id);
-  todo.completed = !todo.completed;
-  localStorage.setItem("todo array", JSON.stringify(todos));
-  makeTodo();
-}

@@ -26,7 +26,7 @@
         padding: 0.8rem;
         font-size: 1rem;
         border: 1px solid gray;
-        margin-right: 12px;
+        margin-right: 6px;
       }
       .add-btn {
         background: rgb(84, 27, 84);
@@ -79,9 +79,11 @@
         type="text"
         placeholder="Enter todo"
         class="input-text"
-        id="input"
+        id="todo-input"
       />
-      <button class="add-btn" onclick="addTodo()">Add</button>
+      <button class="add-btn" id="add-btn" onclick="addOrUpdateTodo()">
+        Add
+      </button>
       <div class="todo-list" id="todo-list"></div>
     </div>
   </body>
