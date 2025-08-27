@@ -62,6 +62,10 @@
         align-items: center;
         gap: 5px;
       }
+      .icon-button {
+        background: transparent;
+        border: none;
+      }
       img {
         height: 20px;
         width: 20px;
@@ -71,45 +75,15 @@
   </head>
   <body>
     <div class="todo">
-      <input type="text" placeholder="Enter todo" class="input-text" />
-      <button class="add-btn">Add</button>
-      <div class="todo-list">
-        <ul class="list">
-          <li class="item">
-            <div class="item-left">
-              <input type="checkbox" />
-              <p>do homework do something</p>
-            </div>
-            <div class="icons">
-              <img src="images/edit.png" alt="edit" />
-              <img src="images/delete.png" alt="delete" />
-            </div>
-          </li>
-          <hr />
-          <li class="item">
-            <div class="item-left">
-              <input type="checkbox" />
-              <p>do homework do something</p>
-            </div>
-            <div class="icons">
-              <img src="images/edit.png" alt="edit" />
-              <img src="images/delete.png" alt="delete" />
-            </div>
-          </li>
-          <hr />
-          <li class="item">
-            <div class="item-left">
-              <input type="checkbox" />
-              <p>do homework do something</p>
-            </div>
-            <div class="icons">
-              <img src="images/edit.png" alt="edit" />
-              <img src="images/delete.png" alt="delete" />
-            </div>
-          </li>
-          <hr />
-        </ul>
-      </div>
+      <input
+        type="text"
+        placeholder="Enter todo"
+        class="input-text"
+        id="input"
+      />
+      <button class="add-btn" onclick="addTodo()">Add</button>
+      <div class="todo-list" id="todo-list"></div>
     </div>
   </body>
+  <script src="./todo.js"></script>
 </html>
