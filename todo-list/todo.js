@@ -18,10 +18,10 @@ function makeTodo() {
               }">${text}</p>
             </div>
             <div class="icons">
-              <button onclick="startEdit(${id})" class="js-edit icon-button">
+              <button onclick="startEdit(${id})" class="icon-button">
                 <img src="images/edit.png" alt="edit" />
               </button>
-              <button onclick="deleteTodo(${id})" class="js-delete icon-button">
+              <button onclick="deleteTodo(${id})" class="icon-button">
                 <img src="images/delete.png" alt="delete" />
               </button>
             </div>
