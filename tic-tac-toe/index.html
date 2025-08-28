@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      .container {
+        width: 100%;
+        max-width: 300px;
+        background: rgb(20, 20, 91);
+        border-radius: 8px;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        color: rgb(6, 222, 222);
+        background: transparent;
+        border: none;
+        padding: 20px;
+        font-size: 20px;
+        font-weight: 800;
+      }
+      .turn {
+        background: rgb(35, 35, 103);
+        box-shadow: 5px 5px 5px rgb(1, 47, 63);
+        color: white;
+        padding: 8px;
+        margin-right: 26px;
+      }
+      .reset {
+        margin-right: 10px;
+        padding: 8px;
+        background: rgb(211, 203, 203);
+        box-shadow: 0 4px 1px -1px gray;
+        border: none;
+        border-radius: 5px;
+      }
+      .grid {
+        display: grid;
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        width: 280px;
+        height: 250px;
+        column-gap: 5px;
+        row-gap: 5px;
+        margin: auto;
+        color: white;
+      }
+      .cell {
+        border: 2px solid navy;
+        text-align: center;
+        font-size: 36px;
+        line-height: 80px;
+        background: rgb(35, 35, 103);
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: transform 0.2s ease;
+        cursor: pointer;
+      }
+      .cell:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+      }
+      .footer {
+        color: black;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px 8px 8px 8px; /* add more top margin for space above */
+      }
+
+      .X-count,
+      .O-count,
+      .ties {
+        width: 80px;
+        height: 60px;
+        background: rgb(159, 177, 177);
+        font-size: 14px;
+        border-radius: 8px;
+
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; 
+      }
+
+      .X-count {
+        background: rgb(57, 173, 173);
+        margin-left: 3px;
+      }
+      .O-count {
+        background: rgb(225, 180, 47);
+        margin-right: 3px;
+      }
+      .X-count p,
+      .O-count p,
+      .ties p {
+        margin: 2px 0; 
+        font-weight: bold; 
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <section class="header">
+        <span class="logo"
+          >X <span style="color: rgb(230, 161, 0)">O</span></span
+        >
+        <span class="turn">X Turn</span>
+        <button class="reset"><i class="fa-solid fa-rotate-right"></i></button>
+      </section>
+      <section class="grid">
+        <div class="cell">X</div>
+        <div class="cell">O</div>
+        <div class="cell">X</div>
+        <div class="cell">O</div>
+        <div class="cell">X</div>
+        <div class="cell">O</div>
+        <div class="cell">X</div>
+        <div class="cell">O</div>
+        <div class="cell">X</div>
+      </section>
+      <section class="footer">
+        <div class="X-count">
+          <p>X(you)</p>
+          <p>14</p>
+        </div>
+        <div class="ties">
+          <p>Ties</p>
+          <p>32</p>
+        </div>
+        <div class="O-count">
+          <p>O(cpu)</p>
+          <p>11</p>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
