@@ -28,20 +28,43 @@
         justify-content: space-between;
         align-items: center;
       }
-      .logo {
-        color: rgb(6, 222, 222);
-        background: transparent;
-        border: none;
-        padding: 20px;
-        font-size: 20px;
-        font-weight: 800;
+      .player-select {
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+        margin: 18px 6px;
       }
+
+      .player-select button {
+        padding: 6px 12px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 16px;
+        transition: 0.2s ease;
+      }
+
+      #chooseX {
+        background: teal;
+        color: white;
+      }
+
+      #chooseO {
+        background: goldenrod;
+        color: white;
+      }
+
+      .player-select button:hover {
+        opacity: 0.85;
+      }
+
       .turn {
         background: rgb(35, 35, 103);
         box-shadow: 5px 5px 5px rgb(1, 47, 63);
         color: white;
         padding: 8px;
-        margin-right: 26px;
+        margin-right: 36px;
       }
       .reset {
         margin-right: 10px;
@@ -82,7 +105,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 20px 8px 8px 8px; /* add more top margin for space above */
+        margin: 20px 8px 8px 8px; 
       }
 
       .X-count,
@@ -94,10 +117,10 @@
         font-size: 14px;
         border-radius: 8px;
 
-        display: flex; 
-        flex-direction: column; 
-        justify-content: center; 
-        align-items: center; 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
 
       .X-count {
@@ -111,17 +134,21 @@
       .X-count p,
       .O-count p,
       .ties p {
-        margin: 2px 0; 
-        font-weight: bold; 
+        margin: 2px 0;
+        font-weight: bold;
       }
     </style>
   </head>
   <body>
     <div class="container">
       <section class="header">
-        <span class="logo"
+        <!-- <span class="logo"
           >X <span style="color: rgb(230, 161, 0)">O</span></span
-        >
+        > -->
+        <div class="player-select">
+          <button id="chooseX">X</button>
+          <button id="chooseO">O</button>
+        </div>
         <span class="turn">X Turn</span>
         <button class="reset"><i class="fa-solid fa-rotate-right"></i></button>
       </section>
