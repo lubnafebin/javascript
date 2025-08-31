@@ -8,6 +8,7 @@ const gameStatus = document.getElementById("gameStatus");
 let player = "O";
 let isPauseGame = false;
 let isGameStart = false;
+resetBtn.disabled = true;
 
 const inputCells = ["", "", "", "", "", "", "", "", ""];
 const winConditions = [
@@ -87,11 +88,13 @@ function declareWinner(winner, winningIndices) {
   winningIndices.forEach(
     (index) => (cells[index].style.background = "#2A2343")
   );
+  resetBtn.disabled = false;
 }
 
 function declareDraw() {
   isPauseGame = true;
   gameStatus.textContent = `draw!`;
+  resetBtn.disabled = false;
 }
 
 function choosePlayer(selectedPlayer) {
