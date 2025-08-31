@@ -45,6 +45,20 @@
         transition: 0.2s ease;
       }
 
+      /* active styles */
+      .player-select button.player-active {
+        font-weight: bold;
+        color: white;
+      }
+
+      #chooseX.player-active {
+        background: rgb(74, 212, 212);
+      }
+
+      #chooseO.player-active {
+        background: rgb(225, 180, 47);
+      }
+
       #chooseX {
         background: teal;
         color: white;
@@ -73,6 +87,7 @@
         box-shadow: 0 4px 1px -1px gray;
         border: none;
         border-radius: 5px;
+        cursor: pointer;
       }
       .grid {
         display: grid;
@@ -89,6 +104,7 @@
         border: 2px solid navy;
         text-align: center;
         font-size: 36px;
+        font-weight: bold;
         line-height: 80px;
         background: rgb(35, 35, 103);
         border-radius: 8px;
@@ -146,7 +162,7 @@
           <button id="chooseX" onclick="choosePlayer('X')">X</button>
           <button id="chooseO" onclick="choosePlayer('O')">O</button>
         </div>
-        <span class="turn">X Turn</span>
+        <span class="turn" id="gameStatus"></span>
         <button class="reset"><i class="fa-solid fa-rotate-right"></i></button>
       </section>
       <section class="grid">

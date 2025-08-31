@@ -3,6 +3,7 @@ const titleHeader = document.querySelector(".player-select");
 const xPlayer = document.querySelector("#chooseX");
 const oPlayer = document.querySelector("#chooseO");
 const resetBtn = document.querySelector(".reset");
+const gameStatus = document.getElementById("gameStatus");
 
 let player = "O";
 let isPauseGame = false;
@@ -38,11 +39,12 @@ function tapCell(cell, index) {
 function updateCell(cell, index) {
   cell.textContent = player;
   inputCells[index] = player;
-  cell.style.color = player == "X" ? "#1892EA" : "#A737FF";
+  cell.style.color = player == "X" ? "#39ADAD" : "#E1B42F";
 }
 
 function changePlayer() {
   player = player == "X" ? "O" : "X";
+  gameStatus.textContent = `${player}turn`;
 }
 
 function randomPick() {
@@ -52,7 +54,7 @@ function randomPick() {
     do {
       randomIndex = Math.floor(Math.random() * inputCells.length);
     } while (inputCells[randomIndex] != "");
-    updateCell(cells[randomIndex], randomIndex, player);
+    updateCell(cells[randomIndex], randomIndex);
     if (!checkWinner()) {
       changePlayer();
       isPauseGame = false;
@@ -69,7 +71,7 @@ function checkWinner() {
       inputCells[b] == player &&
       inputCells[c] == player
     ) {
-      declareWinner([a, b, c]);
+      declareWinner(player, [a, b, c]);
       return true;
     }
   }
@@ -79,8 +81,9 @@ function checkWinner() {
   }
 }
 
-function declareWinner(winningIndices) {
+function declareWinner(winner, winningIndices) {
   isPauseGame = true;
+  gameStatus.textContent = `${winner} wins!`;
   winningIndices.forEach(
     (index) => (cells[index].style.background = "#2A2343")
   );
@@ -88,6 +91,7 @@ function declareWinner(winningIndices) {
 
 function declareDraw() {
   isPauseGame = true;
+  gameStatus.textContent = `draw!`;
 }
 
 function choosePlayer(selectedPlayer) {
