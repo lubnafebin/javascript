@@ -71,30 +71,39 @@ function randomPick() {
 }
 
 function checkWinner() {
+  let winningLines = [];
   for (const [a, b, c] of winConditions) {
     if (
       inputCells[a] == player &&
       inputCells[b] == player &&
       inputCells[c] == player
     ) {
-      declareWinner(player, [a, b, c]);
-      return true;
+      winningLines.push([a, b, c]);
     }
   }
+
+  if (winningLines.length > 0) {
+    declareWinner(player, winningLines);
+    return true;
+  }
+
   if (inputCells.every((cell) => cell != "")) {
     declareDraw();
     return true;
   }
 }
 
-function declareWinner(winner, winningIndices) {
+function declareWinner(winner, winningLines) {
   isPauseGame = true;
-  gameStatus.textContent = `${winner} wins!`;
-  winningIndices.forEach(
-    (index) => (cells[index].style.background = "#2A2343")
-  );
 
-  if (player === userPlayer) {
+  gameStatus.textContent = `${winner} wins!`;
+  winningLines.forEach((line) => {
+    line.forEach((index) => {
+      cells[index].style.background = "#2A2343";
+    });
+  });
+
+  if (winner === userPlayer) {
     youWins++;
     document.getElementById("xWins").textContent = youWins;
   } else {
