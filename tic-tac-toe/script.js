@@ -9,6 +9,11 @@ resetBtn.disabled = true;
 let player = "O";
 let isPauseGame = false;
 let isGameStart = false;
+let youWins = 0;
+let cpuWins = 0;
+let draws = 0;
+let userPlayer = "X";
+let cpuPlayer = "O";
 
 const inputCells = ["", "", "", "", "", "", "", "", ""];
 const winConditions = [
@@ -88,16 +93,32 @@ function declareWinner(winner, winningIndices) {
   winningIndices.forEach(
     (index) => (cells[index].style.background = "#2A2343")
   );
+
+  if (player === userPlayer) {
+    youWins++;
+    document.getElementById("xWins").textContent = youWins;
+  } else {
+    cpuWins++;
+    document.getElementById("oWins").textContent = cpuWins;
+  }
+
   resetBtn.disabled = false;
 }
 
 function declareDraw() {
   isPauseGame = true;
   gameStatus.textContent = `draw!`;
+
+  draws++;
+  document.getElementById("draws").textContent = draws;
+
   resetBtn.disabled = false;
 }
 
 function choosePlayer(selectedPlayer) {
+  userPlayer = selectedPlayer;
+  cpuPlayer = selectedPlayer == "X" ? "O" : "X";
+
   if (!isGameStart) {
     player = selectedPlayer;
     if (player == "X") {
