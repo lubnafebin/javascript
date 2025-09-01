@@ -2,13 +2,13 @@ const cells = document.querySelectorAll(".cell");
 const titleHeader = document.querySelector(".player-select");
 const xPlayer = document.querySelector("#chooseX");
 const oPlayer = document.querySelector("#chooseO");
-const resetBtn = document.querySelector(".reset");
 const gameStatus = document.getElementById("gameStatus");
+const resetBtn = document.querySelector(".reset");
+resetBtn.disabled = true;
 
 let player = "O";
 let isPauseGame = false;
 let isGameStart = false;
-resetBtn.disabled = true;
 
 const inputCells = ["", "", "", "", "", "", "", "", ""];
 const winConditions = [
