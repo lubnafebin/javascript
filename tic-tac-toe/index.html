@@ -52,20 +52,20 @@
       }
 
       #chooseX.player-active {
-        background: rgb(74, 212, 212);
+        background: teal;
       }
 
       #chooseO.player-active {
-        background: rgb(225, 180, 47);
+        background: goldenrod;
       }
 
       #chooseX {
-        background: teal;
+        background: rgb(74, 212, 212);
         color: white;
       }
 
       #chooseO {
-        background: goldenrod;
+        background: rgb(225, 180, 47);
         color: white;
       }
 
@@ -98,7 +98,7 @@
         grid-template-rows: repeat(3, 1fr);
         grid-template-columns: repeat(3, 1fr);
         width: 280px;
-        height: 250px;
+        height: 240px;
         column-gap: 5px;
         row-gap: 5px;
         margin: auto;
@@ -109,7 +109,7 @@
         text-align: center;
         font-size: 36px;
         font-weight: bold;
-        line-height: 80px;
+        line-height: 78px;
         background: rgb(35, 35, 103);
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -119,6 +119,15 @@
       .cell:hover {
         transform: scale(1.05);
         box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+      }
+      .cell.disabled,
+      .cell.disabled:hover {
+        pointer-events: none;
+        opacity: 0.5;
+        transform: none;
+        box-shadow: none;
+        cursor: not-allowed;
+        filter: grayscale(25%);
       }
       .footer {
         color: black;

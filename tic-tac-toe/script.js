@@ -14,6 +14,7 @@ let cpuWins = 0;
 let draws = 0;
 let userPlayer = "X";
 let cpuPlayer = "O";
+let isPlayerSelected = false;
 
 const inputCells = ["", "", "", "", "", "", "", "", ""];
 const winConditions = [
@@ -27,17 +28,24 @@ const winConditions = [
   [2, 4, 6],
 ];
 
+cells.forEach((cell) => cell.classList.add("disabled"));
+
 cells.forEach((cell, index) => {
   cell.addEventListener("click", () => tapCell(cell, index));
 });
 
 function tapCell(cell, index) {
-  if (cell.textContent == "" && !isPauseGame) {
+  if (!isPlayerSelected) return; // must select first
+  if (cell.textContent !== "" || isPauseGame) return; // already filled or locked
+
+  if (player === userPlayer) {
     isGameStart = true;
     updateCell(cell, index);
     if (!checkWinner()) {
       changePlayer();
-      randomPick();
+      if (player === cpuPlayer) {
+        randomPick();
+      }
     }
   }
 }
@@ -61,12 +69,11 @@ function randomPick() {
       randomIndex = Math.floor(Math.random() * inputCells.length);
     } while (inputCells[randomIndex] != "");
     updateCell(cells[randomIndex], randomIndex);
+
     if (!checkWinner()) {
       changePlayer();
       isPauseGame = false;
-      return;
     }
-    player = player == "X" ? "O" : "X";
   }, 1000);
 }
 
@@ -129,13 +136,19 @@ function choosePlayer(selectedPlayer) {
   cpuPlayer = selectedPlayer == "X" ? "O" : "X";
 
   if (!isGameStart) {
-    player = selectedPlayer;
-    if (player == "X") {
+    player = "X";
+
+    if (userPlayer == "X") {
       xPlayer.classList.add("player-active");
       oPlayer.classList.remove("player-active");
     } else {
       xPlayer.classList.remove("player-active");
       oPlayer.classList.add("player-active");
+    }
+    isPlayerSelected = true;
+    cells.forEach((cell) => cell.classList.remove("disabled"));
+    if (userPlayer === "O") {
+      randomPick();
     }
   }
 }
