@@ -1,17 +1,24 @@
-let firstCard = 20
-let secondCard = 1
-let sum = firstCard+secondCard
-let hashBlackJack = false
-let isAlive = true
-let message = ""
+let firstCard = 10;
+let secondCard = 4;
+let sum = firstCard + secondCard;
+let hashBlackJack = false;
+let isAlive = true;
+let message = "";
 
+let messageEl = document.getElementById("message");
+let sumEl = document.getElementById("sum");
+let cardEl = document.getElementById("card");
 function startGame() {
+  cardEl.textContent = "card :" + firstCard + " " + secondCard;
+  sumEl.textContent = "Sum :" + sum;
   if (sum <= 20) {
     message = "do you want to draw a new card?";
   } else if (sum === 21) {
     message = "woo You got a BlackJack";
+    hashBlackJack = true;
   } else {
     message = "You are out of game";
+    isAlive = false;
   }
-  console.log(message);
+  messageEl.textContent = message;
 }
