@@ -31,5 +31,8 @@ function startGame() {
 }
 
 function newCard() {
-  
+  let card = 6;
+  sum += card;
+  cards.push(card);
+  startGame();
 }
